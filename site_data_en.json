@@ -1,0 +1,31 @@
+{
+
+  "site_info": {
+    "global_title"  : "Herat Shop",
+    "description"   : "This is the oficial website of herat shop",
+    "keywords"      : "afghan shop, herat shop, asian shop",
+		"author"        : "Ali Janan",
+		"last_update"   : "28.05.2019"
+  },
+
+  "pages": {
+
+    "index": {
+      "title": "Where hardest stuff is possible",
+      "menu" : "HOME"
+    },
+    "branch": {
+      "title" : "A selection of our latest projects",
+      "menu" : "Branches"
+    },
+    "about": {
+      "title": "Say hello",
+      "menu": "About us"
+    },
+    "contact": {
+      "title": "Say hello",
+      "menu": "Contact"
+    }
+  }
+
+}
