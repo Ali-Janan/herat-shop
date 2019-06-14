@@ -38,7 +38,7 @@ function query($zone, $params = []) {
     
     //QUERY PAGE
     case 'page' :
-    $sql = "SELECT page_key, title, content FROM pages WHERE slug = ? LIMIT 1";
+    $sql = "SELECT page_key, title, slug, content FROM pages WHERE slug = ? LIMIT 1";
     
     $sth = db()->prepare($sql);
     $sth->execute($params);
@@ -75,6 +75,14 @@ function query($zone, $params = []) {
     $results = $sth->fetchAll();
     break;
     
+      //  BANNER-1
+      case 'banners' :
+      $sql = "SELECT banner_key, banner_link FROM banners";
+      
+      $sth = db()->prepare($sql);
+      $sth->execute();
+      $results = $sth->fetchAll(PDO::FETCH_KEY_PAIR);
+      break;
     
     //BY DEFAULT (if a case is not defined) DO THIS
     default : 

@@ -17,6 +17,8 @@ function myFunction() {
   }
 }
 //----------------------------------------------------
+
+
 /**
  * SEARCH FUNCTION
  */
@@ -41,13 +43,14 @@ function searchFunction() {
   }
 }
 //------------------------------------------------------------------
+
+
 /**
  * ADDTOBASKET FUNCTION
  */
 function addToBasket (event) {
   console.log("hello", event);
 }
-
 
 const button = document.querySelector('button');
 
@@ -64,7 +67,6 @@ menuElement.addEventListener('click', function(e) {
   topNavElement.classList.toggle('opened');
 });
 */
-
 
 //------------------------------------------------------
 /**
@@ -91,7 +93,7 @@ $(document).ready(function () {
   3
   });
 
-// -----------------------bootstrap function------------------------------
+// -----------------------mycart function------------------------------
 $(function () {
 
   var goToCartIcon = function($addTocartBtn){
@@ -101,7 +103,7 @@ $(function () {
     var position = $cartIcon.position();
     $image.animate({
       // i changed (top: position.top) to buttom so it does not show animation 
-      top: position.button,
+      top: position.top,
       left: position.left
     }, 500 , "linear", function() {
       $image.remove();
@@ -119,9 +121,9 @@ $(function () {
     showCheckoutModal: true,
     numberOfDecimals: 2,
     cartItems: [
-      {id: 1, name: 'product 1', summary: 'summary 1', price: 10, quantity: 1, image: 'images/img_1.png'},
-      {id: 2, name: 'product 2', summary: 'summary 2', price: 20, quantity: 2, image: 'images/img_2.png'},
-      {id: 3, name: 'product 3', summary: 'summary 3', price: 30, quantity: 1, image: 'images/img_3.png'}
+      {id: 1, name: 'Apple', summary: 'summary 1', price: 2, quantity: 1, image: './asset/image/1.jpg'},
+      {id: 2, name: 'Pear', summary: 'summary 2', price: 3, quantity: 2, image: './asset/image/2.jpg'},
+      {id: 3, name: 'Orange', summary: 'summary 3', price: 2, quantity: 1, image: './asset/image/3.jpg'}
     ],
     clickOnAddToCart: function($addTocart){
       goToCartIcon($addTocart);

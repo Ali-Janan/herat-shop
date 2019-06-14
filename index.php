@@ -9,12 +9,11 @@ require_once('php/functions.php');
 
 <head>
   <meta charset="UTF-8">
-  <title><?php echo title($params) . ' | ' . title($params, 'global'); ?></title>
+  <title><?php echo title('global', $params); ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="<?php echo $params['settings']['description']; ?>">
   <meta name="keywords" content="<?php echo $params['settings']['keywords']; ?>">
   <meta name="author" content="<?php echo $params['settings']['author']; ?>">
-  <title>Herat Shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- bootrap for shopping card-->
@@ -83,74 +82,61 @@ require_once('php/functions.php');
 
     <!-- MAIN CONTENT -->
     <!-- <h1 class="main-title"></h1> -->
-    <main class="main-content">
+  <main class="main-content">
+    <!-- if it is the home page this will be displayed -->
+ <?php if($params['home']['slug'] === $params['active_page']['slug']) { ?>
+    <!-- BANNER-1 -->
+    <section class="banner-1">
+      <div class="padding">
+        <figure><img class="meat-banner" src="<?php echo $params['banners']['first_banner'];?>" alt=""></figure>
+      </div>
+    </section>
 
 
-      <!-- BANNER-1 -->
-      <section class="banner-1">
-        <div class="padding">
-          <figure><img class="meat-banner" src="./asset/image/meat55.jpg" alt=""></figure>
-        </div>
-      </section>
+    <!-- PRODUCTS START -->
+    <section class="products">
+      <h1 class="text-head">All Products and Special offers</h1>
+      <div class="containers" id="myUL">
+        <?php echo products($params);?>
+      </div>
+    </section><!-- PRODUCTS END -->
+
+    
+    <!-- BANNER-2 START-->
+    <section class="banner-2">
+      <div class="padding">
+        <figure><img class="meat-banner" src="<?php echo $params['banners']['second_banner'];?>" alt=""></figure>
+      </div>
+    </section>
+    <!-- BANNER-2 END-->
 
 
-      <!-- PRODUCTS START -->
-      <section class="products">
-        <h1 class="text-head">All Products and Special offers</h1>
-        <div class="containers" id="myUL">
-          <?php echo products($params);?>
-        </div>
-      </section><!-- PRODUCTS END -->
+    <!-- ASIAN START -->
+    <section class="asian padding">
 
-      
-      <!-- BANNER-2 START-->
-      <section class="banner-2">
-        <div class="padding">
-          <figure><img class="meat-banner" src="./asset/image/Lebensmittel.jpg" alt=""></figure>
-        </div>
-      </section>
-      <!-- BANNER-2 END-->
+      <div>
+        <h1>Asian Materials</h1>
+      </div>
+
+      <div class="cont">
+        <figure><a href=""><img class="asian-img" src="<?php echo $params['banners']['first_image'];?>" alt=""></a>Beriani spices</figure>
+        <figure><a href=""><img class="asian-img" src="<?php echo $params['banners']['second_image'];?>" alt=""></a>Dry fruits</figure>
+        <figure><a href=""><img class="asian-img" src="<?php echo $params['banners']['third_image'];?>" alt=""></a>Qurma spices</figure>
+      </div>
+
+    </section>
+  <?php } else {
+
+    
+  echo content($params);
 
 
-      <!-- ASIAN START -->
-      <section class="asian padding">
+ } ?>
 
-        <div>
-          <h1>Asian Materials</h1>
-        </div>
-
-        <div class="cont">
-          <figure><a href=""><img class="asian-img" src="./asset/image/spices3-.jpg" alt=""></a>Beriani spices</figure>
-          <figure><a href=""><img class="asian-img" src="./asset/image/sdf.jpg" alt=""></a>Dry fruits</figure>
-          <figure><a href=""><img class="asian-img" src="./asset/image/spices2.jpg" alt=""></a>Qurma spices</figure>
-        </div>
-
-      </section>
+     
 
 
     </main>
-
-    <!-- Main Title -->
-
-    <!-- <h1 class="main-title"><?php //echo title($params); ?></h1> -->
-
-    <!-- HTML content -->
-    <!-- <p>This will be the dynamic page content...</p> -->
-    <?php
-
-    // if(router() == 'herat-shop') {
-    //   echo image(1);
-    //   echo products_html();
-    //   echo image(2);
-    //   echo materials();
-    // } else {
-    //   echo content($params);
-    // }
-    
-    ?>
-
-    <!-- MAIN CONTENT IN OTHER PAGES END-->
-
 
     <!-- FOOTER START -->
     <footer class="footer">
@@ -175,13 +161,15 @@ require_once('php/functions.php');
 
 
   <!----------------------- --------JAVASCRIPT START--------------------------------->
-  <script src="./asset/js/jquery-3.4.1.slim.min.js"></script>
-  <script src="./asset/js/index.js"></script>
+  /*#region*/
+    <script src="./asset/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="./asset/js/index.js"></script>
 
-  <!-- ------------------------bootrap for shopping card ----------------->
-  <script src="./asset/js/jquery-2.2.3.min.js"></script>
-  <script type='text/javascript' src="./asset/js/bootstrap.min.js"></script>
-  <script type='text/javascript' src="./asset/js/jquery.mycart.min.js"></script>
+    <!-- ------------------------bootrap for shopping card ----------------->
+    <script src="./asset/js/jquery-2.2.3.min.js"></script>
+    <script type='text/javascript' src="./asset/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="./asset/js/jquery.mycart.min.js"></script>
+  /*#end region */
   <!-------------------------------JAVASRICPT END----------------------------------->
 
 </body>
