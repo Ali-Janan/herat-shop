@@ -1,12 +1,11 @@
 <?php
-
-
+// Take data from database
 function query($zone, $params = []) {
   
   //START SWITCH
   switch($zone) {
     
-    //QUERY THE pages TABLE
+    //QUERY THE pages TABLE from database
     case 'menus' :
     $sql = "SELECT menu, slug FROM pages WHERE visible = ?";
     
@@ -22,23 +21,10 @@ function query($zone, $params = []) {
     $results = $sth->fetchAll();
     break;
     
-
-    // SIDE NAV - category
-    case 'category' :
-    $sql = "SELECT category_name, link, icon FROM category";
-    //CLEAN UP YOUR SQL STRING
-    $sth = db()->prepare($sql);
-    //EXECUTE THE QUERY - With the real values
-    $sth->execute();
-    //Get the results
-    $results = $sth->fetchAll();
-    
-    break;
-    
     
     //QUERY PAGE
     case 'page' :
-    $sql = "SELECT page_key, title, slug, content FROM pages WHERE slug = ? LIMIT 1";
+    $sql = "SELECT page_key, title, slug, content FROM pages WHERE slug = ? LIMIT 1"; //LIMIT 1 = TAKE THE FIREST RECORD
     
     $sth = db()->prepare($sql);
     $sth->execute($params);
@@ -66,6 +52,20 @@ function query($zone, $params = []) {
     
     break;
 
+
+    // SIDE NAV - category
+    case 'category' :
+    $sql = "SELECT category_name, link, icon FROM category";
+    //CLEAN UP YOUR SQL STRING
+    $sth = db()->prepare($sql);
+    //EXECUTE THE QUERY - With the real values
+    $sth->execute();
+    //Get the results
+    $results = $sth->fetchAll();
+    
+    break;
+
+
     // PRODUCTS
     case 'products' :
     $sql = "SELECT discount, pic_link, new_price, old_price, product_name, unit FROM products ORDER BY products_id";
@@ -91,10 +91,6 @@ function query($zone, $params = []) {
     
   } //END SWITCH
   
-  
   return $results;
-  
-  
+   
 }
-
-//var_dump( query('home_slug') );

@@ -9,14 +9,13 @@ require_once('php/functions.php');
 
 <head>
   <meta charset="UTF-8">
-  <title><?php echo title('global', $params); ?></title>
+  <title><?php echo title('head', $params); ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="<?php echo $params['settings']['description']; ?>">
+  <!-- keywords in search by others -->
   <meta name="keywords" content="<?php echo $params['settings']['keywords']; ?>">
   <meta name="author" content="<?php echo $params['settings']['author']; ?>">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- bootrap for shopping card-->
+  <!-- shopping card plugin css-->
   <link rel="stylesheet" href="./asset/css/bootstrap.min.css">
   <!--Google fonts  -->
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -27,8 +26,8 @@ require_once('php/functions.php');
   <!-- css style sheet -->
   <link rel="stylesheet" href="./asset/css/index.css">
 </head>
-<!--------------------------------BODY START-------------------------------------------->
 
+<!-- BODY START -->
 <body>
 
   <div class="grid-container">
@@ -38,7 +37,8 @@ require_once('php/functions.php');
 
       <!-- TOP ROW -->
       <section class="top-row">
-        <!-- The form -->
+
+        <!-- logo -->
         <figure class="logo">
           <img src="./asset/image/panda.png" alt="logo">
         </figure>
@@ -61,6 +61,7 @@ require_once('php/functions.php');
         <!-- <span id="menu-products" class="icon-menu"></span> -->
       </section>
 
+
       <!-- Bottom ROW -->
       <section class="bottom-row">
         <span id="menu-page" class="icon-menu"></span>
@@ -81,62 +82,57 @@ require_once('php/functions.php');
 
 
     <!-- MAIN CONTENT -->
-    <!-- <h1 class="main-title"></h1> -->
-  <main class="main-content">
-    <!-- if it is the home page this will be displayed -->
- <?php if($params['home']['slug'] === $params['active_page']['slug']) { ?>
-    <!-- BANNER-1 -->
-    <section class="banner-1">
-      <div class="padding">
-        <figure><img class="meat-banner" src="<?php echo $params['banners']['first_banner'];?>" alt=""></figure>
-      </div>
-    </section>
+    <main class="main-content">
+      <!-- if it is the home page this will be displayed -->
+      <?php if($params['home']['slug'] === $params['active_page']['slug']) { ?>
 
 
-    <!-- PRODUCTS START -->
-    <section class="products">
-      <h1 class="text-head">All Products and Special offers</h1>
-      <div class="containers" id="myUL">
-        <?php echo products($params);?>
-      </div>
-    </section><!-- PRODUCTS END -->
-
-    
-    <!-- BANNER-2 START-->
-    <section class="banner-2">
-      <div class="padding">
-        <figure><img class="meat-banner" src="<?php echo $params['banners']['second_banner'];?>" alt=""></figure>
-      </div>
-    </section>
-    <!-- BANNER-2 END-->
+      <!-- BANNER-1 -->
+      <section class="banner-1">
+        <div class="padding">
+          <figure><img class="meat-banner" src="<?php echo $params['banners']['first_banner'];?>" alt=""></figure>
+        </div>
+      </section>
 
 
-    <!-- ASIAN START -->
-    <section class="asian padding">
+      <!-- PRODUCTS START -->
+      <section class="products">
+        <h1 class="text-head">All Products and Special offers</h1>
+        <div class="containers" id="myUL">
+          <?php echo products($params);?>
+        </div>
+      </section>
 
-      <div>
-        <h1>Asian Materials</h1>
-      </div>
-
-      <div class="cont">
-        <figure><a href=""><img class="asian-img" src="<?php echo $params['banners']['first_image'];?>" alt=""></a>Beriani spices</figure>
-        <figure><a href=""><img class="asian-img" src="<?php echo $params['banners']['second_image'];?>" alt=""></a>Dry fruits</figure>
-        <figure><a href=""><img class="asian-img" src="<?php echo $params['banners']['third_image'];?>" alt=""></a>Qurma spices</figure>
-      </div>
-
-    </section>
-  <?php } else {
-
-    
-  echo content($params);
+      
+      <!-- BANNER-2 START-->
+      <section class="banner-2">
+        <div class="padding">
+          <figure><img class="meat-banner" src="<?php echo $params['banners']['second_banner'];?>" alt=""></figure>
+        </div>
+      </section>
 
 
- } ?>
+      <!-- ASIAN START -->
+      <section class="asian padding">
 
-     
+        <div>
+          <h1>Asian Materials</h1>
+        </div>
 
+        <div class="cont">
+          <figure><a href=""><img class="asian-img" src="<?php echo $params['banners']['first_image'];?>" alt=""></a>Beriani spices</figure>
+          <figure><a href=""><img class="asian-img" src="<?php echo $params['banners']['second_image'];?>" alt=""></a>Dry fruits</figure>
+          <figure><a href=""><img class="asian-img" src="<?php echo $params['banners']['third_image'];?>" alt=""></a>Qurma spices</figure>
+        </div>
 
-    </main>
+      </section>
+      <?php } else {
+        //otherwise print content from databas like branches ... 
+      echo content($params);
+      } ?>
+
+    </main> <!-- MAIN CONTENT END -->
+
 
     <!-- FOOTER START -->
     <footer class="footer">
@@ -160,18 +156,17 @@ require_once('php/functions.php');
   </div><!--GRID CONTAINER END-->
 
 
-  <!----------------------- --------JAVASCRIPT START--------------------------------->
+  <!-- JAVASCRIPT START -->
   /*#region*/
     <script src="./asset/js/jquery-3.4.1.slim.min.js"></script>
     <script src="./asset/js/index.js"></script>
-
-    <!-- ------------------------bootrap for shopping card ----------------->
+    <!-- shopping card plugin -->
     <script src="./asset/js/jquery-2.2.3.min.js"></script>
     <script type='text/javascript' src="./asset/js/bootstrap.min.js"></script>
     <script type='text/javascript' src="./asset/js/jquery.mycart.min.js"></script>
   /*#end region */
-  <!-------------------------------JAVASRICPT END----------------------------------->
+  <!-- JAVASCRIPT END -->
 
-</body>
+</body><!-- BODY END -->
     
     </html>

@@ -101,13 +101,7 @@ $(function () {
     var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
     $addTocartBtn.prepend($image);
     var position = $cartIcon.position();
-    $image.animate({
-      // i changed (top: position.top) to buttom so it does not show animation 
-      top: position.top,
-      left: position.left
-    }, 500 , "linear", function() {
-      $image.remove();
-    });
+    
   }
 
   $('.my-cart-btn').myCart({
@@ -120,11 +114,11 @@ $(function () {
     affixCartIcon: true,
     showCheckoutModal: true,
     numberOfDecimals: 2,
-    cartItems: [
-      {id: 1, name: 'Apple', summary: 'summary 1', price: 2, quantity: 1, image: './asset/image/1.jpg'},
-      {id: 2, name: 'Pear', summary: 'summary 2', price: 3, quantity: 2, image: './asset/image/2.jpg'},
-      {id: 3, name: 'Orange', summary: 'summary 3', price: 2, quantity: 1, image: './asset/image/3.jpg'}
-    ],
+    // cartItems: [
+    //   {id: 1, name: 'Apple', summary: 'summary 1', price: 2, quantity: 1, image: './asset/image/1.jpg'},
+    //   {id: 2, name: 'Pear', summary: 'summary 2', price: 3, quantity: 2, image: './asset/image/2.jpg'},
+    //   {id: 3, name: 'Orange', summary: 'summary 3', price: 2, quantity: 1, image: './asset/image/3.jpg'}
+    // ],
     clickOnAddToCart: function($addTocart){
       goToCartIcon($addTocart);
     },

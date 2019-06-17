@@ -6,10 +6,10 @@
  */
 
 // PDO - 
-/* DB INFO
+/* DATABASE INFO
 ------------------------------------------*/
-$db_host    = '127.0.0.1';
-$db_name    = 'herat-shop'; // it should be name of database
+$db_host    = '127.0.0.1'; //database host
+$db_name    = 'herat-shop'; 
 $db_user    = 'root';
 $db_pass    = 'root'; //On WAMP by default is '' → empty string; on XAMPP & MAMP by default is 'root'
 $db_charset = 'utf8mb4';

@@ -1,52 +1,48 @@
 <?php
+/* ERROR MESSAGE
+--------------------------------------*/
 ini_set('display_errors', 1);
 error_reporting(E_ALL & ~E_NOTICE);
 
 
-/* GLOBALS / INIT
---------------------------------------*/
-$get_page   = router(); //show($get_page);
+/** GLOBALS VARIABLE (active page)
+ * --------------------------------------*/
+$get_page   = router();
 
-//show( query('settings') );
 
-/* PARAMETERS
+/* PARAMETERS (store the data)
 --------------------------------------*/
 $params = [
   'get_page'        => $get_page,
   'settings'        => query('settings'),
-  'active_page'     => query('page', [$get_page]),
+  'active_page'     => query('page', [$get_page]), 
   'products'        => query('products'),
   'banners'         => query('banners'),
   'home'            => query('home_slug')
 ];
 
-// show($params['banners']);
 
-/* ROUTER
+/* ROUTER (manage what to take from URL)
 --------------------------------------*/
 function router() {
+//  delete the page name from URL
+  $self = str_replace('index.php', '', $_SERVER['PHP_SELF']); 
+  // take the last part of URL
+  $slug = str_replace($self, '', $_SERVER['REQUEST_URI']);
   
-  $self = str_replace('index.php', '', $_SERVER['PHP_SELF']); //show($self);
-  $slug = str_replace($self, '', $_SERVER['REQUEST_URI']); //show($slug);
-  
+  // it slug was empty display index = home
   if( empty($slug) ) {
-    $slug = query('home_slug')['slug'];
-    //$slug = $home_slug['slug'];
-    ;  }
-    
+     $slug = query('home_slug')['slug'];
+  }
     return $slug;
-    //$root_arr = explode('/', $root); show($root_arr);
-    //$last = end($root_arr); show('Last: '.$last);
-    
 }
-  //show( router() );
   
   
-  /* MENU HTML ITEMS
+  /* MENU FUNCTION
   --------------------------------------*/
   function menu_items($params = []) {
     
-    $pages = query('menus'); //show($pages);
+    $pages = query('menus'); 
     $get_page = $params['get_page'];
     
     $menu_items = '';
@@ -54,13 +50,13 @@ function router() {
     $menu_items .= '<ul class="my-nav">'.PHP_EOL;
     
     if(!$pages) {
-      return 'You have no pages !';
+      return 'You have no page!';
     }
     
     //START LOOP
     foreach($pages as $page) {
       
-      $menu = $page['menu']; //show($menu);
+      $menu = $page['menu'];
       $slug = $page['slug'];
       
       $active = ($get_page === $slug) ? ' active' : '';
@@ -69,7 +65,7 @@ function router() {
       
     }
     
-    $menu_items .= '</ul>'.PHP_EOL;
+    $menu_items .= '</ul>'.PHP_EOL; //endline character
     
     return $menu_items;
     
@@ -85,7 +81,7 @@ function router() {
     return $content;
     
   }
-  
+
   
   /* TITLE
   --------------------------------------*/
@@ -93,26 +89,29 @@ function router() {
     
     $title = $params['active_page']['title'];
     
-    
+    // 
     if($zone === 'content') {
+      // this will display the page title only
       return $title;
+    } elseif ($zone === 'head') {
+      // this will display the page title plus the global title of the page.
+      return $title .' | '. $params['settings']['global_title'];
     }
-    
-    return $title .' | '. $params['settings']['global_title'];
-    
     
   }
   
   
-  /* SIDE NAV HTML
+  /* SIDE NAV
   --------------------------------------*/
   function side_nav($params = []) {
     $categories = query('category'); 
     $menu_items = '';
     $menu_items .= '<nav class="category"><ul>'.PHP_EOL;
+
     if(!$categories) {
       return 'You have no categories !';
     }
+    
     //START LOOP
     foreach($categories as $category) {
       $menu_items .= '<li class="space"><a href="'.$category['pic_link'].'" class=" space icon-'.$category['icon'].'">'.$category['category_name'].'</a></li>'.PHP_EOL;
@@ -151,26 +150,18 @@ function router() {
     return $result;              
   }
   
-  
-  
-  
-  /* ASIAN MATERIALS HTML
+    /* DISCOUNT CALCULATE FUNCTION
   --------------------------------------*/
-  function asian($params = []) {
-    
+  function cal_discount($new_price, $old_price){
+    $discount = ($old_price - $new_price)/$old_price;
+    return floor($discount*100);
   }
-  
+
+
   /* SHOW FUNCTION
   --------------------------------------*/
   function show($data = '') {
-    
     echo '<pre>';
     print_r($data);
     echo '</pre>';
-    
-  }
-  
-  function cal_discount($new_price, $old_price){
-    $discrount = ($old_price - $new_price)/$old_price;
-    return floor($discrount*100);
-  }
+  } 
